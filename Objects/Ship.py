@@ -1,6 +1,7 @@
 from GameFrame import RoomObject, Globals
 from Objects.Laser import Laser
 import pygame
+walking = True
 
 class Ship(RoomObject):
     """
@@ -28,15 +29,17 @@ class Ship(RoomObject):
         """
         
         if key[pygame.K_w]:
-            self.y_speed = -10
+            self.y -= 10
         elif key[pygame.K_s]:
-            self.y_speed = 10
+            self.y += 10
         elif key[pygame.K_a]:
-            self.x_speed = -10
+            self.x -= 10
         elif key[pygame.K_d]:
-            self.x_speed = 10
+            self.x += 10
         if key[pygame.K_SPACE]:
             self.shoot_laser()
+        if key[pygame.K_l]:
+            self.shoots_laser()
             
     def keep_in_room(self):
         """
@@ -75,3 +78,8 @@ class Ship(RoomObject):
         Allows ship to shoot again
         """
         self.can_shoot = True
+
+    def shoots_laser(self):
+        if walking == True:
+            lasers = Laser(self.room, self.x + self.width, self.y + self.height/2 - 4)
+        self.room.add_room_object(lasers)
