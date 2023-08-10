@@ -1,5 +1,6 @@
 from GameFrame import RoomObject, Globals
 from Objects.Laser import Laser
+from Objects.Hud import Score
 import pygame
 walking = True
 
@@ -40,6 +41,8 @@ class Ship(RoomObject):
             self.shoot_laser()
         if key[pygame.K_l]:
             self.shoots_laser()
+        if key[pygame.K_k]:
+            self.room.score.update_score(100)
             
     def keep_in_room(self):
         """

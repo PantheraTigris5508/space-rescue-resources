@@ -57,3 +57,4 @@ class Asteroid(RoomObject):
         
         if other_type == "Ship":
             self.room.running = False
+            Globals.SCORE = 0
